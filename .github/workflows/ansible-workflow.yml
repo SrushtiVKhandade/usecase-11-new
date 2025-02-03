@@ -34,6 +34,9 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      - name: Test SSH connection
+        run: ssh -o StrictHostKeyChecking=no root@13.208.174.35 echo "SSH connection successful"
+
       - name: Disable host key checking
         run: |
           echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
