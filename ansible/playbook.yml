@@ -1,18 +1,29 @@
 ---
-- name: Install and start Nginx
+- name: Install and start apache http service
   hosts: webservers
   become: yes
 
   tasks:
 
    
-    - name: Ensure Nginx is installed
+    - name: stopping nginx
       yum:
         name: nginx
-        state: present
+        state: stopped
 
-    - name: Ensure Nginx is running
+    - name: disable Nginx
       service:
         name: nginx
+        state: started
+        enabled: no
+
+    - name: Ensure apache is installed
+      yum:
+        name: httpd
+        state: present
+
+    - name: Ensure apache is running
+      service:
+        name: apache
         state: started
         enabled: yes
