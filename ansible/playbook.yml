@@ -4,16 +4,6 @@
   become: yes
 
   tasks:
-    - name: Stop Nginx
-      service:
-        name: nginx
-        state: stopped
-
-    - name: Disable Nginx
-      service:
-        name: nginx
-        enabled: no
-
     - name: Ensure Apache is installed
       yum:
         name: httpd
