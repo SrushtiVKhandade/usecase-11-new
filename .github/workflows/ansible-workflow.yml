@@ -35,7 +35,7 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Test SSH connection
-        run: ssh -o StrictHostKeyChecking=no root@13.127.254.236 echo "SSH connection successful"
+        run: ssh -o StrictHostKeyChecking=no root@172.31.11.55 echo "SSH connection successful"
 
       - name: Disable host key checking
         run: |
