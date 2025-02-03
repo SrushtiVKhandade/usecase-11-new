@@ -7,7 +7,7 @@
 
    
     - name: stopping nginx
-      yum:
+      service: 
         name: nginx
         state: stopped
 
