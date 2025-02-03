@@ -26,6 +26,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install ansible
 
+      - name: Add SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Disable host key checking
+        run: |
+          echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+
       - name: Run Ansible Playbook
         run: |
           ansible-playbook -i ansible/inventory ansible/playbook.yml
